@@ -21,10 +21,6 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkuser")
-    private User fkuser;
-
     public Long getIdsurvey() {
         return idsurvey;
     }
@@ -41,26 +37,16 @@ public class Survey {
         this.theme = theme;
     }
 
-    public User getFkuser() {
-        return fkuser;
-    }
-
-    public void setFkuser(User fkuser) {
-        this.fkuser = fkuser;
-    }
-
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme, User fkuser) {
+    public Survey(Long idsurvey, String theme) {
         this.idsurvey = idsurvey;
         this.theme = theme;
-        this.fkuser = fkuser;
     }
 
-    public Survey(String theme, User fkuser) {
+    public Survey(String theme) {
         this.theme = theme;
-        this.fkuser = fkuser;
     }
 
 }
