@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.senasoft.sena.exceptions.ResourceNotFoundException;
 import com.senasoft.sena.models.Certification;
 import com.senasoft.sena.services.ICertificationService;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,16 +43,20 @@ public class CertificationController {
    @GetMapping("/certification/{id}")
    public ResponseEntity<Certification> getCertificationById(@PathVariable long id) {
     Certification certificate = certificationService.findById(id).orElseThrow(()->new ResourceNotFoundException("The certification with " + id +" not exist"));
-
+    return ResponseEntity.ok(certificate);
    }
 
   
 
    @DeleteMapping("/certification/{id}")
-   public ResponseEntity<Certification> deleteCertification(@PathVariable long id) {
-        Certification certificate = certificationService.findById(id).orElseThrow(()->new ResourceNotFoundException("The certification with " + id +" not exist"));
-
+   public ResponseEntity<Map<String, Boolean>> deleteCertification(@PathVariable long id) {
+    Certification certificate = certificationService.findById(id)
+    .orElseThrow(() -> new ResourceNotFoundException("The Certification not exists in the id " + id));
     certificationService.delete(certificate);
+
+    Map<String, Boolean> response = new HashMap<>();
+        response.put("delete", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 
