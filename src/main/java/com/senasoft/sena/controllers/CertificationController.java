@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.senasoft.sena.exceptions.ResourceNotFoundException;
 import com.senasoft.sena.models.Certification;
 import com.senasoft.sena.services.ICertificationService;
 import java.util.List;
@@ -48,7 +48,8 @@ public class CertificationController {
 
    @DeleteMapping("/certification/{id}")
    public ResponseEntity<Certification> deleteCertification(@PathVariable long id) {
-    Certification certificate = certificationService.findById(id).orElseThrow(()-> ResourceNotFoundException("The certification with " + id +" not exist"));
+        Certification certificate = certificationService.findById(id).orElseThrow(()->new ResourceNotFoundException("The certification with " + id +" not exist"));
+
     certificationService.delete(certificate);
     }
 
