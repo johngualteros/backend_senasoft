@@ -28,7 +28,7 @@ public class QuestionController {
     private IQuestionService cuestionService;
     
     // Return a object json with the data from certificate
-    @GetMapping("/Cuestion")
+    @GetMapping("/Question")
    public List<Question> getAllCuestions() {
     return cuestionService.findAll();
    }

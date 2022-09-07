@@ -34,7 +34,8 @@ public class SurveyController {
     //return the list of surveys in the database
     @GetMapping("/survey")
     public List<Survey> getAllsSurveys(){
-        return surveyService.findAll();
+        List<Survey> listSurvery = surveyService.findAll();
+        return listSurvery;
     }
 
     //return the survey created in the database
