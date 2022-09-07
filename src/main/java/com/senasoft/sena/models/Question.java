@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table()
-public class Cuestion {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idquestion;
@@ -23,41 +23,42 @@ public class Cuestion {
     @Column(name = "statement")
     private String statement;
 
-    @Column(name = "opindate", nullable = false)
+    @Column(name = "openingdate", nullable = false)
     private Date openingdate;
 
-    @Column(name = "clogindate", nullable = false)
+    @Column(name = "closingdate", nullable = false)
     private Date closingdate;
 
     @Column(name = "state", nullable = false)
     private Boolean state; 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "university_id")
-    private List<Certification> certification;
+    @JoinColumn(name = "response_id")
+    private List<Response> response;
 
-    public Cuestion() {
+    public Question() {
     }
 
+    
 
-    public Cuestion(long idquestion, String statement, Date openingdate, Date closingdate, Boolean state,
-            List<Certification> certification) {
+    public Question(long idquestion, String statement, Date openingdate, Date closingdate, Boolean state,
+            List<Response> response) {
         this.idquestion = idquestion;
         this.statement = statement;
         this.openingdate = openingdate;
         this.closingdate = closingdate;
         this.state = state;
-        this.certification = certification;
+        this.response = response;
     }
 
-    public Cuestion(String statement, Date openingdate, Date closingdate, Boolean state,
-            List<Certification> certification) {
+    public Question(String statement, Date openingdate, Date closingdate, Boolean state, List<Response> response) {
         this.statement = statement;
         this.openingdate = openingdate;
         this.closingdate = closingdate;
         this.state = state;
-        this.certification = certification;
+        this.response = response;
     }
+
 
 
     public long getIdquestion() {
@@ -100,12 +101,12 @@ public class Cuestion {
         this.state = state;
     }
 
-    public List<Certification> getCertification() {
-        return certification;
+    public List<Response> getResponse() {
+        return response;
     }
 
-    public void setCertification(List<Certification> certification) {
-        this.certification = certification;
+    public void setResponse(List<Response> response) {
+        this.response = response;
     }
 
 

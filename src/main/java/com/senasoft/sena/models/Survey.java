@@ -1,14 +1,17 @@
 package com.senasoft.sena.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table
@@ -21,9 +24,14 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fkuser")
-    private User fkuser;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "surkey_id")
+    private List<Certification> certification;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "surkey_id")
+    private List<Question> question;
+
 
     public Long getIdsurvey() {
         return idsurvey;
@@ -40,27 +48,40 @@ public class Survey {
     public void setTheme(String theme) {
         this.theme = theme;
     }
+    public List<Certification> getCertification() {
+            return certification;
+        }
 
-    public User getFkuser() {
-        return fkuser;
-    }
+        public void setCertification(List<Certification> certification) {
+            this.certification = certification;
+        }
 
-    public void setFkuser(User fkuser) {
-        this.fkuser = fkuser;
-    }
+        public List<Question> getQuestion() {
+            return question;
+        }
+
+        public void setQuestion(List<Question> question) {
+            this.question = question;
+        }
+
 
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme, User fkuser) {
+    public Survey(Long idsurvey, String theme, List<Certification> certification, List<Question> question) {
         this.idsurvey = idsurvey;
         this.theme = theme;
-        this.fkuser = fkuser;
+        this.certification = certification;
+        this.question = question;
     }
 
-    public Survey(String theme, User fkuser) {
+    public Survey(String theme, List<Certification> certification, List<Question> question) {
         this.theme = theme;
-        this.fkuser = fkuser;
+        this.certification = certification;
+        this.question = question;
     }
+
+    
+   
 
 }

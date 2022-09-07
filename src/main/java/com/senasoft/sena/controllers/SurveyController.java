@@ -57,7 +57,6 @@ public class SurveyController {
                 .orElseThrow(()->new ResourceNotFoundException("The survey not exists in the id " + id));
 
         survey.setTheme(surveyUpdated.getTheme());
-        survey.setFkuser(surveyUpdated.getFkuser());
 
         Survey surveyUpdate = surveyService.save(survey);
 

@@ -77,8 +77,8 @@ public class User {
     @Column(name = "password", length = 20, nullable = false)
     private String password;
 
-    @OneToMany(cascade =  CascadeType.ALL)
-    @JoinColumn(name = "fkuser")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "survey_id")
     private List<Survey> survey;
 
     public Long getIdusuario() {

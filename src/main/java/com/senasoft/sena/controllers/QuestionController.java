@@ -17,43 +17,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senasoft.sena.exceptions.ResourceNotFoundException;
-import com.senasoft.sena.models.Cuestion;
-import com.senasoft.sena.services.ICuestionService;
+import com.senasoft.sena.models.Question;
+import com.senasoft.sena.services.IQuestionService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
-public class CuestionController {
+public class QuestionController {
     @Autowired
-    private ICuestionService cuestionService;
+    private IQuestionService cuestionService;
     
     // Return a object json with the data from certificate
     @GetMapping("/Cuestion")
-   public List<Cuestion> getAllCuestions() {
+   public List<Question> getAllCuestions() {
     return cuestionService.findAll();
    }
 
    @PostMapping("/cuestion")
-   public Cuestion saveCuestion(@RequestBody Cuestion Cuestion) {
+   public Question saveCuestion(@RequestBody Question Cuestion) {
     return cuestionService.save(Cuestion);
    }
 
    @GetMapping("/Cuestion/{id}")
-   public ResponseEntity<Cuestion> getCuestionById(@PathVariable long id) {
-    Cuestion certificate = cuestionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The Cuestion with " + id +" not exist"));
+   public ResponseEntity<Question> getCuestionById(@PathVariable long id) {
+    Question certificate = cuestionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The Cuestion with " + id +" not exist"));
     return ResponseEntity.ok(certificate);
    }
    
    @PutMapping("/cuestion/{id}")
-   public ResponseEntity<Cuestion> updateEmployees(@PathVariable Long id,@RequestBody Cuestion updateCuestion){
-       Cuestion cuestion = cuestionService.findById(id)
+   public ResponseEntity<Question> updateEmployees(@PathVariable Long id,@RequestBody Question updateCuestion){
+       Question cuestion = cuestionService.findById(id)
                .orElseThrow(()->new ResourceNotFoundException("The Cuestion not exists in the id " + id));
 
        cuestion.setOpeningdate(updateCuestion.getOpeningdate());
        cuestion.setClosingdate(updateCuestion.getClosingdate());
        cuestion.setState(updateCuestion.getState());
 
-       Cuestion cuestionUpdate = cuestionService.save(cuestion);
+       Question cuestionUpdate = cuestionService.save(cuestion);
 
        return ResponseEntity.ok(cuestion);
    }
@@ -61,7 +61,7 @@ public class CuestionController {
 
    @DeleteMapping("/Cuestion/{id}")
    public ResponseEntity<Map<String, Boolean>> deleteCuestion(@PathVariable long id) {
-    Cuestion cuestion = cuestionService.findById(id)
+    Question cuestion = cuestionService.findById(id)
     .orElseThrow(() -> new ResourceNotFoundException("The Cuestion not exists in the id " + id));
     cuestionService.delete(cuestion);
 

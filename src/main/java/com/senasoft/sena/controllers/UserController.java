@@ -16,6 +16,7 @@ import com.senasoft.sena.services.IUserService;
 import com.senasoft.sena.exceptions.ResourceNotFoundException;
 import com.senasoft.sena.models.*;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,17 @@ public class UserController {
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.findAll();
+    }
+
+    @GetMapping("/user/{email}/{password}")
+    public Boolean validateUser(@PathVariable String email, @PathVariable String password){
+        System.out.println("validateUser: " + email + " " + password);
+        User resultado = userService.search(email, password);
+        if (resultado != null) {
+            System.out.println("resultado: " + resultado.getEmail() + "" +resultado.getName());
+            return true;
+        }
+        return false;
     }
 
     //return the user created in the database
