@@ -78,8 +78,8 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "survey_id")
-    private List<Survey> survey;
+    @JoinColumn(name = "user_id")
+    private List<Response> response;
 
     public Long getIdusuario() {
         return iduser;

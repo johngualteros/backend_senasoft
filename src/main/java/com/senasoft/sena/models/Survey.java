@@ -24,18 +24,12 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
-<<<<<<< HEAD
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "surkey_id")
-    private List<Certification> certification;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "surkey_id")
     private List<Question> question;
 
 
-=======
->>>>>>> 66aa4eb74364675de89a08512bc37bd82a54a52d
     public Long getIdsurvey() {
         return idsurvey;
     }
@@ -51,14 +45,9 @@ public class Survey {
     public void setTheme(String theme) {
         this.theme = theme;
     }
-    public List<Certification> getCertification() {
-            return certification;
-        }
 
-<<<<<<< HEAD
-        public void setCertification(List<Certification> certification) {
-            this.certification = certification;
-        }
+
+
 
         public List<Question> getQuestion() {
             return question;
@@ -72,16 +61,19 @@ public class Survey {
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme, List<Certification> certification, List<Question> question) {
+    public Survey(Long idsurvey, String theme, List<Question> question) {
         this.idsurvey = idsurvey;
         this.theme = theme;
-        this.certification = certification;
         this.question = question;
     }
+    
 
-    public Survey(String theme, List<Certification> certification, List<Question> question) {
+    public Survey(String theme) {
         this.theme = theme;
-        this.certification = certification;
+    }
+
+    public Survey(String theme, List<Question> question) {
+        this.theme = theme;
         this.question = question;
     }
 

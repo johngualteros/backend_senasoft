@@ -1,12 +1,16 @@
 package com.senasoft.sena.models;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,10 @@ public class Response {
 
     @Column(name = "dateresponse", nullable = false)  
     private Date dateresponse;
+    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "certification_id")
+    private List<Certification> certification;
 
     public Response() {
     }
