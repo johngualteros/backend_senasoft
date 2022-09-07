@@ -1,7 +1,9 @@
 package com.senasoft.sena.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senasoft.sena.services.IUserService;
+
 import com.senasoft.sena.exceptions.ResourceNotFoundException;
 import com.senasoft.sena.models.*;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +40,17 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.findAll();
     }
+
+    @GetMapping("/users/{email}/{password}")
+    public Boolean validateUser(@PathVariable String email, @PathVariable String password){
+        User resultado = userService.search(email, password);
+        if (resultado != null) {
+            return true;
+        }
+        return false;
+    }
+
+   
 
     //return the user created in the database
     @PostMapping("/users")

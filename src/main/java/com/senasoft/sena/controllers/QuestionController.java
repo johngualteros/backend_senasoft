@@ -17,53 +17,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senasoft.sena.exceptions.ResourceNotFoundException;
-import com.senasoft.sena.models.Cuestion;
-import com.senasoft.sena.services.ICuestionService;
+import com.senasoft.sena.models.Question;
+import com.senasoft.sena.services.IQuestionService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
 public class QuestionController {
     @Autowired
-    private ICuestionService cuestionService;
+    private IQuestionService questionService;
     
     // Return a object json with the data from certificate
     @GetMapping("/question")
-   public List<Cuestion> getAllCuestions() {
-    return cuestionService.findAll();
+   public List<Question> getAllquestions() {
+    return questionService.findAll();
    }
 
    @PostMapping("/question")
-   public Cuestion saveCuestion(@RequestBody Cuestion Cuestion) {
-    return cuestionService.save(Cuestion);
+   public Question savequestion(@RequestBody Question question) {
+    return questionService.save(question);
    }
 
    @GetMapping("/question/{id}")
-   public ResponseEntity<Cuestion> getCuestionById(@PathVariable long id) {
-    Cuestion certificate = cuestionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The Cuestion with " + id +" not exist"));
+   public ResponseEntity<Question> getquestionById(@PathVariable long id) {
+    Question certificate = questionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The question with " + id +" not exist"));
     return ResponseEntity.ok(certificate);
    }
    
    @PutMapping("/question/{id}")
-   public ResponseEntity<Cuestion> updateEmployees(@PathVariable Long id,@RequestBody Cuestion updateCuestion){
-       Cuestion cuestion = cuestionService.findById(id)
-               .orElseThrow(()->new ResourceNotFoundException("The Cuestion not exists in the id " + id));
+   public ResponseEntity<Question> updateEmployees(@PathVariable Long id,@RequestBody Question updateQuestion){
+    Question question = questionService.findById(id)
+               .orElseThrow(()->new ResourceNotFoundException("The question not exists in the id " + id));
 
-       cuestion.setOpeningdate(updateCuestion.getOpeningdate());
-       cuestion.setClosingdate(updateCuestion.getClosingdate());
-       cuestion.setState(updateCuestion.getState());
+       question.setOpeningdate(updateQuestion.getOpeningdate());
+       question.setClosingdate(updateQuestion.getClosingdate());
+       question.setState(updateQuestion.getState());
 
-       Cuestion cuestionUpdate = cuestionService.save(cuestion);
+       Question questionUpdate = questionService.save(question);
 
-       return ResponseEntity.ok(cuestion);
+       return ResponseEntity.ok(question);
    }
   
 
    @DeleteMapping("/question/{id}")
-   public ResponseEntity<Map<String, Boolean>> deleteCuestion(@PathVariable long id) {
-    Cuestion cuestion = cuestionService.findById(id)
-    .orElseThrow(() -> new ResourceNotFoundException("The Cuestion not exists in the id " + id));
-    cuestionService.delete(cuestion);
+   public ResponseEntity<Map<String, Boolean>> deletequestion(@PathVariable long id) {
+    Question question = questionService.findById(id)
+    .orElseThrow(() -> new ResourceNotFoundException("The question not exists in the id " + id));
+    questionService.delete(question);
 
     Map<String, Boolean> response = new HashMap<>();
         response.put("delete", Boolean.TRUE);

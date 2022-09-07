@@ -77,7 +77,18 @@ public class User {
     @Column(name = "password", length = 20, nullable = false)
     private String password;
 
-    
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Response> response;
+
+    public Long getIdusuario() {
+        return iduser;
+    }
+
+    public void setIdusuario(Long idusuario) {
+        this.iduser = idusuario;
+    }
+
     public String getNumberdocument() {
         return numberdocument;
     }

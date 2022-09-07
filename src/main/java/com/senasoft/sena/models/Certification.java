@@ -17,11 +17,14 @@ public class Certification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idcertification;
 
-    @Column(name = "certification", length = 255, nullable = false)
+    @Column(name = "settled", length = 255, nullable = false)
     private long settled;
 
     @Column(name = "certificationdate")
     private Date certificationdate;
+
+    @Column(name = "certificationname")
+    private String namecertification;
 
     
 

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table()
-public class Cuestion {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idquestion;
@@ -33,10 +33,10 @@ public class Cuestion {
     private Boolean state = false; 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "university_id")
-    private List<Certification> certification;
+    @JoinColumn(name = "response_id")
+    private List<Response> response;
 
-    public Cuestion() {
+    public Question() {
     }
 
     public long getIdquestion() {
@@ -79,40 +79,14 @@ public class Cuestion {
         this.state = state;
     }
 
-    public List<Certification> getCertification() {
-        return certification;
+    public List<Response> getResponse() {
+        return response;
     }
 
-    public void setCertification(List<Certification> certification) {
-        this.certification = certification;
+    public void setResponse(List<Response> response) {
+        this.response = response;
     }
 
-    public Cuestion(long idquestion, String statement, String openingdate, String closingdate, Boolean state,
-            List<Certification> certification) {
-        this.idquestion = idquestion;
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.certification = certification;
-    }
-
-    public Cuestion(String statement, String openingdate, String closingdate, Boolean state,
-            List<Certification> certification) {
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.certification = certification;
-    }
-
-    public Cuestion(long idquestion, String statement, String openingdate, String closingdate, Boolean state) {
-        this.idquestion = idquestion;
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-    }
 
     
 
