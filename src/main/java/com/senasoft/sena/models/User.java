@@ -21,7 +21,7 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idusuario;
+    private Long iduser;
 
     @Column(name = "numberdocument", length = 15)
     private String numberdocument;
@@ -82,11 +82,11 @@ public class User {
     private List<Survey> survey;
 
     public Long getIdusuario() {
-        return idusuario;
+        return iduser;
     }
 
     public void setIdusuario(Long idusuario) {
-        this.idusuario = idusuario;
+        this.iduser = idusuario;
     }
 
     public String getNumberdocument() {
@@ -234,20 +234,21 @@ public class User {
         this.password = password;
     }
 
-    public List<Survey> getSurvey() {
-        return survey;
+    public Long getIduser() {
+        return iduser;
     }
 
-    public void setSurvey(List<Survey> survey) {
-        this.survey = survey;
+    public void setIduser(Long iduser) {
+        this.iduser = iduser;
     }
-
     
-    public User(Long idusuario, String numberdocument, String name, String lastname, String address, String email,
+    
+
+    public User(Long iduser, String numberdocument, String name, String lastname, String address, String email,
             String numberphone, String landline, Date datebirth, String municipality, String stratum,
             String academiclevel, String sex, String affiliationregime, String disabilitycondition, String ethnicity,
-            String technologicalaccess, String role, String password, List<Survey> survey) {
-        this.idusuario = idusuario;
+            String technologicalaccess, String role, String password) {
+        this.iduser = iduser;
         this.numberdocument = numberdocument;
         this.name = name;
         this.lastname = lastname;
@@ -266,14 +267,13 @@ public class User {
         this.technologicalaccess = technologicalaccess;
         this.role = role;
         this.password = password;
-        this.survey = survey;
     }
 
     
     public User(String numberdocument, String name, String lastname, String address, String email, String numberphone,
             String landline, Date datebirth, String municipality, String stratum, String academiclevel, String sex,
             String affiliationregime, String disabilitycondition, String ethnicity, String technologicalaccess,
-            String role, String password, List<Survey> survey) {
+            String role, String password) {
         this.numberdocument = numberdocument;
         this.name = name;
         this.lastname = lastname;
@@ -292,11 +292,11 @@ public class User {
         this.technologicalaccess = technologicalaccess;
         this.role = role;
         this.password = password;
-        this.survey = survey;
     }
 
     public User() {
     }
+
 
     
 }

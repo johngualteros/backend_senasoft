@@ -84,7 +84,6 @@ public class UserController {
         user.setTechnologicalaccess(userUpdated.getTechnologicalaccess());
         user.setRole(userUpdated.getRole());
         user.setPassword(userUpdated.getPassword());
-        user.setSurvey(userUpdated.getSurvey());
 
         User userUpdate = userService.save(user);
 

@@ -24,6 +24,7 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
+<<<<<<< HEAD
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "surkey_id")
     private List<Certification> certification;
@@ -33,6 +34,8 @@ public class Survey {
     private List<Question> question;
 
 
+=======
+>>>>>>> 66aa4eb74364675de89a08512bc37bd82a54a52d
     public Long getIdsurvey() {
         return idsurvey;
     }
@@ -52,6 +55,7 @@ public class Survey {
             return certification;
         }
 
+<<<<<<< HEAD
         public void setCertification(List<Certification> certification) {
             this.certification = certification;
         }
