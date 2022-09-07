@@ -23,14 +23,14 @@ public class Cuestion {
     @Column(name = "statement")
     private String statement;
 
-    @Column(name = "opindate", nullable = false)
-    private Date openingdate;
+    @Column(name = "opendate", nullable = false)
+    private String openingdate;
 
-    @Column(name = "clogindate", nullable = false)
-    private Date closingdate;
+    @Column(name = "closingdate", nullable = false)
+    private String closingdate;
 
     @Column(name = "state", nullable = false)
-    private Boolean state; 
+    private Boolean state = false; 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "university_id")
@@ -38,27 +38,6 @@ public class Cuestion {
 
     public Cuestion() {
     }
-
-
-    public Cuestion(long idquestion, String statement, Date openingdate, Date closingdate, Boolean state,
-            List<Certification> certification) {
-        this.idquestion = idquestion;
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.certification = certification;
-    }
-
-    public Cuestion(String statement, Date openingdate, Date closingdate, Boolean state,
-            List<Certification> certification) {
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.certification = certification;
-    }
-
 
     public long getIdquestion() {
         return idquestion;
@@ -76,19 +55,19 @@ public class Cuestion {
         this.statement = statement;
     }
 
-    public Date getOpeningdate() {
+    public String getOpeningdate() {
         return openingdate;
     }
 
-    public void setOpeningdate(Date openingdate) {
+    public void setOpeningdate(String openingdate) {
         this.openingdate = openingdate;
     }
 
-    public Date getClosingdate() {
+    public String getClosingdate() {
         return closingdate;
     }
 
-    public void setClosingdate(Date closingdate) {
+    public void setClosingdate(String closingdate) {
         this.closingdate = closingdate;
     }
 
@@ -108,6 +87,34 @@ public class Cuestion {
         this.certification = certification;
     }
 
+    public Cuestion(long idquestion, String statement, String openingdate, String closingdate, Boolean state,
+            List<Certification> certification) {
+        this.idquestion = idquestion;
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.certification = certification;
+    }
+
+    public Cuestion(String statement, String openingdate, String closingdate, Boolean state,
+            List<Certification> certification) {
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.certification = certification;
+    }
+
+    public Cuestion(long idquestion, String statement, String openingdate, String closingdate, Boolean state) {
+        this.idquestion = idquestion;
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+    }
+
+    
 
     
 }

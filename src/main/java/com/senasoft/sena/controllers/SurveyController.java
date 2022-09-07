@@ -52,11 +52,11 @@ public class SurveyController {
 
     // return a response entity for the specified survey if it is found in the database and updated
     @PutMapping("/survey/{id}")
-    public ResponseEntity<Survey> updatesurvey(@PathVariable Long id,@RequestBody Survey surveyUpdated){
+    public ResponseEntity<Survey> updatesurvey(@PathVariable Long id){
         Survey survey = surveyService.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("The survey not exists in the id " + id));
 
-        survey.setTheme(surveyUpdated.getTheme());
+        survey.setStatus(!survey.isStatus());
 
         Survey surveyUpdate = surveyService.save(survey);
 

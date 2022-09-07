@@ -21,6 +21,9 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
+    @Column(name= "status")
+    private boolean status = false;
+
     public Long getIdsurvey() {
         return idsurvey;
     }
@@ -37,16 +40,26 @@ public class Survey {
         this.theme = theme;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Survey(String theme, boolean status) {
+        this.theme = theme;
+        this.status = status;
+    }
+
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme) {
+    public Survey(Long idsurvey, String theme, boolean status) {
         this.idsurvey = idsurvey;
         this.theme = theme;
-    }
-
-    public Survey(String theme) {
-        this.theme = theme;
+        this.status = status;
     }
 
 }

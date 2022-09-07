@@ -23,28 +23,28 @@ import com.senasoft.sena.services.ICuestionService;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/")
-public class CuestionController {
+public class QuestionController {
     @Autowired
     private ICuestionService cuestionService;
     
     // Return a object json with the data from certificate
-    @GetMapping("/Cuestion")
+    @GetMapping("/question")
    public List<Cuestion> getAllCuestions() {
     return cuestionService.findAll();
    }
 
-   @PostMapping("/cuestion")
+   @PostMapping("/question")
    public Cuestion saveCuestion(@RequestBody Cuestion Cuestion) {
     return cuestionService.save(Cuestion);
    }
 
-   @GetMapping("/Cuestion/{id}")
+   @GetMapping("/question/{id}")
    public ResponseEntity<Cuestion> getCuestionById(@PathVariable long id) {
     Cuestion certificate = cuestionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The Cuestion with " + id +" not exist"));
     return ResponseEntity.ok(certificate);
    }
    
-   @PutMapping("/cuestion/{id}")
+   @PutMapping("/question/{id}")
    public ResponseEntity<Cuestion> updateEmployees(@PathVariable Long id,@RequestBody Cuestion updateCuestion){
        Cuestion cuestion = cuestionService.findById(id)
                .orElseThrow(()->new ResourceNotFoundException("The Cuestion not exists in the id " + id));
@@ -59,7 +59,7 @@ public class CuestionController {
    }
   
 
-   @DeleteMapping("/Cuestion/{id}")
+   @DeleteMapping("/question/{id}")
    public ResponseEntity<Map<String, Boolean>> deleteCuestion(@PathVariable long id) {
     Cuestion cuestion = cuestionService.findById(id)
     .orElseThrow(() -> new ResourceNotFoundException("The Cuestion not exists in the id " + id));

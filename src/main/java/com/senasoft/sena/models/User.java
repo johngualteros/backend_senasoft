@@ -45,7 +45,7 @@ public class User {
     private String landline;
 
     @Column(name = "datebirth", nullable = false)
-    private Date datebirth;
+    private String datebirth;
 
     @Column(name = "municipality", length = 30, nullable = false)
     private String municipality;
@@ -134,11 +134,11 @@ public class User {
         this.landline = landline;
     }
 
-    public Date getDatebirth() {
+    public String getDatebirth() {
         return datebirth;
     }
 
-    public void setDatebirth(Date datebirth) {
+    public void setDatebirth(String datebirth) {
         this.datebirth = datebirth;
     }
 
@@ -234,7 +234,7 @@ public class User {
     
 
     public User(Long iduser, String numberdocument, String name, String lastname, String address, String email,
-            String numberphone, String landline, Date datebirth, String municipality, String stratum,
+            String numberphone, String landline, String datebirth, String municipality, String stratum,
             String academiclevel, String sex, String affiliationregime, String disabilitycondition, String ethnicity,
             String technologicalaccess, String role, String password) {
         this.iduser = iduser;
@@ -260,7 +260,7 @@ public class User {
 
     
     public User(String numberdocument, String name, String lastname, String address, String email, String numberphone,
-            String landline, Date datebirth, String municipality, String stratum, String academiclevel, String sex,
+            String landline, String datebirth, String municipality, String stratum, String academiclevel, String sex,
             String affiliationregime, String disabilitycondition, String ethnicity, String technologicalaccess,
             String role, String password) {
         this.numberdocument = numberdocument;
