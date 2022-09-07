@@ -36,8 +36,6 @@ public class Question {
     @JoinColumn(name = "response_id")
     private List<Response> response;
 
-    public Question() {
-    }
 
     public long getIdquestion() {
         return idquestion;
@@ -89,6 +87,29 @@ public class Question {
 
 
     
+    public Question(long idquestion, String statement, String openingdate, String closingdate, Boolean state,
+            List<Response> response) {
+        this.idquestion = idquestion;
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.response = response;
+    }
+
+    
+    public Question(String statement, String openingdate, String closingdate, Boolean state, List<Response> response) {
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.response = response;
+    }
+
+    public Question() {
+    }
+
+   
 
     
 }

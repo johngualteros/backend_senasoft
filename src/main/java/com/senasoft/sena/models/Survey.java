@@ -27,6 +27,10 @@ public class Survey {
     @Column(name= "status")
     private boolean status = false;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "surkey_id")
+    private List<Question> question;
+
     public Long getIdsurvey() {
         return idsurvey;
     }
@@ -51,19 +55,34 @@ public class Survey {
         this.status = status;
     }
 
-    public Survey(String theme, boolean status) {
-        this.theme = theme;
-        this.status = status;
-    }
+    
 
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme, boolean status) {
+    public List<Question> getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(List<Question> question) {
+        this.question = question;
+    }
+
+    public Survey(Long idsurvey, String theme, boolean status, List<Question> question) {
         this.idsurvey = idsurvey;
         this.theme = theme;
         this.status = status;
+        this.question = question;
     }
+
+    public Survey(String theme, boolean status, List<Question> question) {
+        this.theme = theme;
+        this.status = status;
+        this.question = question;
+    }
+
+    
+    
 
 
     
