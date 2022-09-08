@@ -35,11 +35,13 @@ public class CertificationController {
     return certificationService.findAll();
    }
 
+   //save the certificate in the database
    @PostMapping("certificaction")
    public Certification saveCertification(@RequestBody Certification certification) {
     return certificationService.save(certification);
    }
 
+   // returns a certificate that has been saved in the database
    @GetMapping("/certification/{id}")
    public ResponseEntity<Certification> getCertificationById(@PathVariable long id) {
     Certification certificate = certificationService.findById(id).orElseThrow(()->new ResourceNotFoundException("The certification with " + id +" not exist"));

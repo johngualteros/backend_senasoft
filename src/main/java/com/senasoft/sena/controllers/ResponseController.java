@@ -31,11 +31,13 @@ public class ResponseController {
     return cuestionService.findAll();
    }
 
+   // should save the response object in the database
    @PostMapping("/response")
    public Response saveCuestion(@RequestBody Response response)  {
     return cuestionService.save(response);
    }
 
+    // returns a response whose id is registered in the database   
    @GetMapping("/response/{id}")
    public ResponseEntity<Response> getCuestionById(@PathVariable long id) {
     Response certificate = cuestionService.findById(id).orElseThrow(()->new ResourceNotFoundException("The Response with " + id +" not exist"));

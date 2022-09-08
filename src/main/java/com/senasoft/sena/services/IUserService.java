@@ -16,4 +16,7 @@ public interface IUserService extends JpaRepository<User, Long>{
     nativeQuery = true)
     public User search(String email, String password);
 
+    @Query(value="SELECT * FROM user u WHERE u.email = ?1", nativeQuery=true)
+    public User findByEmail(String email);
+
 }

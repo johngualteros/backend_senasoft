@@ -24,11 +24,15 @@ public class Survey {
     @Column(name = "theme", length = 20)
     private String theme;
 
+    @Column(name= "status")
+    private boolean status = false;
+
+    @Column(name = "icon", length = 20)
+    private String nameIcon;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "surkey_id")
     private List<Question> question;
-
 
     public Long getIdsurvey() {
         return idsurvey;
@@ -46,36 +50,43 @@ public class Survey {
         this.theme = theme;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
-
-        public List<Question> getQuestion() {
-            return question;
-        }
-
-        public void setQuestion(List<Question> question) {
-            this.question = question;
-        }
-
+    
 
     public Survey() {
     }
 
-    public Survey(Long idsurvey, String theme, List<Question> question) {
+    public List<Question> getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(List<Question> question) {
+        this.question = question;
+    }
+
+    public Survey(Long idsurvey, String theme, boolean status, List<Question> question) {
         this.idsurvey = idsurvey;
         this.theme = theme;
+        this.status = status;
         this.question = question;
     }
+
+    public Survey(String theme, boolean status, List<Question> question) {
+        this.theme = theme;
+        this.status = status;
+        this.question = question;
+    }
+
+    
     
 
-    public Survey(String theme) {
-        this.theme = theme;
-    }
-
-    public Survey(String theme, List<Question> question) {
-        this.theme = theme;
-        this.question = question;
-    }
 
     
    

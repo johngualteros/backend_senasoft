@@ -23,42 +23,18 @@ public class Question {
     @Column(name = "statement")
     private String statement;
 
-    @Column(name = "openingdate", nullable = false)
-    private Date openingdate;
+    @Column(name = "opendate", nullable = false)
+    private String openingdate;
 
     @Column(name = "closingdate", nullable = false)
-    private Date closingdate;
+    private String closingdate;
 
     @Column(name = "state", nullable = false)
-    private Boolean state; 
+    private Boolean state = false; 
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "response_id")
     private List<Response> response;
-
-    public Question() {
-    }
-
-    
-
-    public Question(long idquestion, String statement, Date openingdate, Date closingdate, Boolean state,
-            List<Response> response) {
-        this.idquestion = idquestion;
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.response = response;
-    }
-
-    public Question(String statement, Date openingdate, Date closingdate, Boolean state, List<Response> response) {
-        this.statement = statement;
-        this.openingdate = openingdate;
-        this.closingdate = closingdate;
-        this.state = state;
-        this.response = response;
-    }
-
 
 
     public long getIdquestion() {
@@ -77,19 +53,19 @@ public class Question {
         this.statement = statement;
     }
 
-    public Date getOpeningdate() {
+    public String getOpeningdate() {
         return openingdate;
     }
 
-    public void setOpeningdate(Date openingdate) {
+    public void setOpeningdate(String openingdate) {
         this.openingdate = openingdate;
     }
 
-    public Date getClosingdate() {
+    public String getClosingdate() {
         return closingdate;
     }
 
-    public void setClosingdate(Date closingdate) {
+    public void setClosingdate(String closingdate) {
         this.closingdate = closingdate;
     }
 
@@ -109,6 +85,31 @@ public class Question {
         this.response = response;
     }
 
+
+    
+    public Question(long idquestion, String statement, String openingdate, String closingdate, Boolean state,
+            List<Response> response) {
+        this.idquestion = idquestion;
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.response = response;
+    }
+
+    
+    public Question(String statement, String openingdate, String closingdate, Boolean state, List<Response> response) {
+        this.statement = statement;
+        this.openingdate = openingdate;
+        this.closingdate = closingdate;
+        this.state = state;
+        this.response = response;
+    }
+
+    public Question() {
+    }
+
+   
 
     
 }
